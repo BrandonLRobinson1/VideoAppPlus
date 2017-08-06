@@ -21,8 +21,11 @@ class LogIn extends React.Component {
 
   submitForm (event) {
     event.preventDefault();
+
+    //getting the value from the ref on line 47, would usually be just ref instead of inputRef
+    console.log(this.emailInput.value);
+
     console.log('form submit, call axios pass it ');
-    
   }
 
   collectLogInValue (event) {
@@ -41,9 +44,9 @@ class LogIn extends React.Component {
             <Col sm={12}>
               <FormControl 
               type="email" 
-              placeholder="Email" 
-              placeholder="Enter text"
+              placeholder="Email"
               onChange={this.collectLogInValue}
+              inputRef={input => { this.emailInput = input; }}
               />
             </Col>
           </FormGroup>
