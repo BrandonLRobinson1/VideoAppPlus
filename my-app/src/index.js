@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import SignUp from './components/SignUp';
-import LogIn from './components/LogIn';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import {
@@ -19,14 +17,12 @@ import './index.css';
 console.log(Router);
 
 ReactDOM.render(
-  <Provider store={"somethingthatneeeeedstofilledinlater"}>
-    <Router>
-      <div>
-        <Route  path="/" component={App} />
-        <Route  path="/SignUp" component={SignUp} />
-        <Route  exact path="/LogIn" component={LogIn} />
-        </div>
-    </Router>
-  </Provider>,
-  document.getElementById('root'));
+    <Provider store={"somethingthatneeeeedstofilledinlater"}>
+      <Router>
+        <Route path="/" component={App} />
+      </Router>
+    </Provider>,
+  document.getElementById('root')
+);
+
 registerServiceWorker();

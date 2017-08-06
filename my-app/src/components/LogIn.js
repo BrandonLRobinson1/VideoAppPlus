@@ -68,7 +68,6 @@ class LogIn extends React.Component {
         {LogInForm}
       </div>
     );
-   
   }
 }
 
