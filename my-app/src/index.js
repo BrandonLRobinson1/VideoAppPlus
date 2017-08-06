@@ -7,11 +7,8 @@ import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route
-  // BrowserHistory
 } from 'react-router-dom';
 
-// import * as miccheck from 'react-router-dom';
-// console.log(miccheck)
 import './index.css';
 
 console.log(Router);

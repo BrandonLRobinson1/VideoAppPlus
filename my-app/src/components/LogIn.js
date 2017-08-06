@@ -1,5 +1,4 @@
 import React from 'react';
-// import './App.css';
 import {
   Form,
   FormGroup,
@@ -9,6 +8,8 @@ import {
   ControlLabel//,
   // Checkbox
 } from 'react-bootstrap';
+
+import '../App.css';
 
 class LogIn extends React.Component {
   constructor(){
@@ -34,38 +35,37 @@ class LogIn extends React.Component {
   render() {
     // sign in form with login password and sign up
     const LogInForm = (
-      <Form horizontal>
-        <FormGroup controlId="formHorizontalEmail">
-          <Col componentClass={ControlLabel} sm={2}>
-            Email
-          </Col>
-          <Col sm={10}>
-            <FormControl type="email" placeholder="Email" />
-          </Col>
-        </FormGroup>
+        <Form horizontal>
 
-        <FormGroup controlId="formHorizontalPassword">
-          <Col componentClass={ControlLabel} sm={2}>
-            Password
-          </Col>
-          <Col sm={10}>
-            <FormControl type="password" placeholder="Password" />
-          </Col>
-        </FormGroup>
+          <h3 className="text-center">Working example with validation</h3>
+          <FormGroup controlId="formHorizontalEmail">
+            <Col sm={12}>
+              <FormControl type="email" placeholder="Email" />
+            </Col>
+          </FormGroup>
 
-        <FormGroup>
-          <Col smOffset={2} sm={10}>
-            <Button type="submit">
-              Sign in
-            </Button>
-          </Col>
-        </FormGroup>
-      </Form>
+          <FormGroup controlId="formHorizontalPassword">
+            <Col sm={12}>
+              <FormControl type="password" placeholder="Password" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col sm={12}>
+              <Button className="expandWidth" bsStyle="info" type="button">
+                Sign in
+              </Button>
+            </Col>
+          </FormGroup>
+
+        </Form>
     );
 
     return (
       <div>
-        {LogInForm}
+        <FormGroup>
+          {LogInForm}
+        </ FormGroup>
       </div>
     );
   }
@@ -76,3 +76,10 @@ export default LogIn;
 // final form credentials
 // <input type='email' placeholder='email' className="inputEmail"  required></input>
 // <input type='password' placeholder='password' className="inputPasswird" required></input>
+
+    // margin: 5% 25%;
+    // height: 196px;
+    // border: 1px solid lightgrey;
+    // padding: 15px;
+    // margin-top: 10px;
+    // padding-top: 32px;

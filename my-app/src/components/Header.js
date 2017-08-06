@@ -1,12 +1,12 @@
 import React from 'react';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
-
 import {
   Navbar,
   NavItem,
   Nav
 } from 'react-bootstrap';
+
 import {
   Route,
   Link
@@ -49,10 +49,12 @@ class Header extends React.Component {
     return (
       <div>
         {navbarInstance}
-        <Route exact path="/SignUp" component={SignUp} />
-        <Route exact path="/LogIn" component={LogIn} />
+        <div className="container">
+          <Route exact path="/SignUp" component={SignUp} />
+          <Route exact path="/LogIn" component={LogIn} />
+        </div>
       </div>
-    )    
+    )  
   }
 }
 
