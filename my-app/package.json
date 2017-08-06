@@ -2,16 +2,10 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/": {
-      "target": "localhost:8080/",
-      "ws": true
-    }
-  },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "express": "^4.15.3",
-    "history": "^4.6.3",
     "nodemon": "^1.11.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",

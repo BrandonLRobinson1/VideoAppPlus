@@ -1,6 +1,14 @@
 import React from 'react';
 // import './App.css';
-
+import {
+  Form,
+  FormGroup,
+  Col,
+  Button,
+  FormControl,
+  ControlLabel//,
+  // Checkbox
+} from 'react-bootstrap';
 
 class LogIn extends React.Component {
   constructor(){
@@ -24,23 +32,43 @@ class LogIn extends React.Component {
   }
 
   render() {
+    // sign in form with login password and sign up
+    const LogInForm = (
+      <Form horizontal>
+        <FormGroup controlId="formHorizontalEmail">
+          <Col componentClass={ControlLabel} sm={2}>
+            Email
+          </Col>
+          <Col sm={10}>
+            <FormControl type="email" placeholder="Email" />
+          </Col>
+        </FormGroup>
+
+        <FormGroup controlId="formHorizontalPassword">
+          <Col componentClass={ControlLabel} sm={2}>
+            Password
+          </Col>
+          <Col sm={10}>
+            <FormControl type="password" placeholder="Password" />
+          </Col>
+        </FormGroup>
+
+        <FormGroup>
+          <Col smOffset={2} sm={10}>
+            <Button type="submit">
+              Sign in
+            </Button>
+          </Col>
+        </FormGroup>
+      </Form>
+    );
 
     return (
-      <div className="App form">
-        Log In
-        <form className="formation" ref={ (input)=>{this.LogInForm = input} } onSubmit={ (e)=>{this.logInFields(e)} } >
-          <div className="input" >
-            <input type='text' placeholder='email' className="inputEmail" ref={ (input) => {this.inputEmail = input} } required></input>
-          </div>
-          <div className="input" >
-            <input type='text' placeholder='password' className="inputPasswird"  ref={ (input) => {this.inputPw = input} } required></input>
-          </div>
-          <div className="input" >
-            <input type='submit' value='Log In'></input>
-          </div>
-        </form>  
+      <div>
+        {LogInForm}
       </div>
-    )    
+    );
+   
   }
 }
 

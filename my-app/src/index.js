@@ -22,9 +22,9 @@ ReactDOM.render(
   <Provider store={"somethingthatneeeeedstofilledinlater"}>
     <Router>
       <div>
-        <Route exact path="/" component={App} />
-        <Route exact path="/SignUp" component={SignUp} />
-        <Route exact path="/LogIn" component={LogIn} />
+        <Route  path="/" component={App} />
+        <Route  path="/SignUp" component={SignUp} />
+        <Route  path="/LogIn" component={LogIn} />
         </div>
     </Router>
   </Provider>,
