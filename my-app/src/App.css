@@ -1,3 +1,7 @@
+input {
+  text-align: center;
+}
+
 .App {
   text-align: center;
 }
@@ -43,6 +47,10 @@
    text-align: center; 
 }
 
-input {
-text-align: center;
+.form-wrap {
+    margin: 8% 15%;
+    border: 1px solid gray;
+    padding: 15px 50px;
+    border-radius: 10px;
+    background-color: #e3e5e5;
 }

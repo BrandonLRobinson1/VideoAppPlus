@@ -37,7 +37,8 @@ class LogIn extends React.Component {
     const LogInForm = (
         <Form horizontal>
 
-          <h3 className="text-center">Working example with validation</h3>
+          <h2 className="text-center">Working example with validation</h2>
+          <br></br>
           <FormGroup controlId="formHorizontalEmail">
             <Col sm={12}>
               <FormControl type="email" placeholder="Email" />
@@ -46,7 +47,7 @@ class LogIn extends React.Component {
 
           <FormGroup controlId="formHorizontalPassword">
             <Col sm={12}>
-              <FormControl type="password" placeholder="Password" />
+              <FormControl type="password" placeholder="Password" ref={ (input) => {this.inputEmail = input} } required/>
             </Col>
           </FormGroup>
 
@@ -63,7 +64,7 @@ class LogIn extends React.Component {
 
     return (
       <div>
-        <FormGroup>
+        <FormGroup className="form-wrap">
           {LogInForm}
         </ FormGroup>
       </div>
