@@ -1,12 +1,12 @@
 import React from 'react';
+//import axios
 import {
   Form,
   FormGroup,
   Col,
   Button,
   FormControl,
-  ControlLabel//,
-  // Checkbox
+  ControlLabel
 } from 'react-bootstrap';
 
 import '../App.css';
@@ -15,35 +15,27 @@ class LogIn extends React.Component {
   constructor(){
     super();
 
-    this.logInFields = this.logInFields.bind(this);
     this.collectLogInValue = this.collectLogInValue.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
-  // logInFields(event){
-  //   event.preventDefault();
-  //   console.log('LogInInfo working');
-  //   //using refs in line 83 and 84 to grab inputs
-  //   const LogInInfo = {
-  //     email: this.inputEmail.value,
-  //     pw: this.inputPw.value
-  //   }
-
-  //   this.props.location.userLogIn.userLogIn(LogInInfo);
-  //   //using ref on line to reset fields
-  //   this.LogInForm.reset();
-  // }
+  submitForm (event) {
+    event.preventDefault();
+    console.log('form submit, call axios pass it ');
+    
+  }
 
   collectLogInValue (event) {
     event.preventDefault();
-    console.log(this)
+    console.log(event.target.value);
   }
 
   render() {
-    // sign in form with login password and sign up
+    // log in form with login password and sign up
     const LogInForm = (
-        <Form horizontal>
+        <Form horizontal onSubmit={this.submitForm}>
 
-          <h2 className="text-center">Working example with validation</h2>
+          <h2 className="text-center">Log In Job Seeker</h2>
           <br></br>
           <FormGroup controlId="formHorizontalEmail">
             <Col sm={12}>
@@ -58,13 +50,17 @@ class LogIn extends React.Component {
 
           <FormGroup controlId="formHorizontalPassword">
             <Col sm={12}>
-              <FormControl type="password" placeholder="Password" />
+              <FormControl 
+              type="password" 
+              placeholder="Password"
+              required
+              />
             </Col>
           </FormGroup>
 
           <FormGroup>
             <Col sm={12}>
-              <Button className="expandWidth" bsStyle="info" type="button">
+              <Button className="expandWidth" bsStyle="info" type="submit">
                 Sign in
               </Button>
             </Col>
@@ -84,14 +80,3 @@ class LogIn extends React.Component {
 }
 
 export default LogIn;
-
-// final form credentials
-// <input type='email' placeholder='email' className="inputEmail"  required></input>
-// <input type='password' placeholder='password' className="inputPasswird" required></input>
-
-    // margin: 5% 25%;
-    // height: 196px;
-    // border: 1px solid lightgrey;
-    // padding: 15px;
-    // margin-top: 10px;
-    // padding-top: 32px;
