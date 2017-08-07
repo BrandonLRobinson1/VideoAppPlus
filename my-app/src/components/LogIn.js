@@ -1,5 +1,5 @@
 import React from 'react';
-//import axios
+import axios from 'axios';
 import {
   Form,
   FormGroup,
@@ -26,6 +26,26 @@ class LogIn extends React.Component {
     console.log(this.emailInput.value);
 
     console.log('form submit, call axios pass it ');
+     let signUpInfo = {
+      email: this.emailInput.value,
+      pw: 'pw'
+    }
+
+    // axios.post( 'http://localhost:8080/login',
+    // axios.post( 'http://localhost:8080/update',
+    axios.post( 'http://localhost:8080/signup',
+        signUpInfo
+      )
+      .then( data => {
+        // const stateDuplicate = this.state.loggedIn;
+        console.log(data.data.userInfo, ' stateData Success');
+
+        } )
+      .catch( err => {
+        if (err) console.log( err );
+        alert('your job info sucks');
+      }); 
+
   }
 
   collectLogInValue (event) {
