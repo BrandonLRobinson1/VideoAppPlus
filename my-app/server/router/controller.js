@@ -16,7 +16,7 @@ exports.createUser = function(req, res){
     email: email,
     password: hash
   } );
-   
+
   let findTheUser = User.findOne({email: email});
   findTheUser
     .then( (user) => {
