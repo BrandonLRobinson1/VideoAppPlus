@@ -28,11 +28,11 @@ class LogIn extends React.Component {
     console.log('form submit, call axios pass it ');
      let signUpInfo = {
       email: this.emailInput.value,
-      pw: 'pw'
+      pw: this.passwordInput.value
     }
-    // axios.post( 'http://localhost:8080/login',
+    axios.post( 'http://localhost:8080/login',
     // axios.post( 'http://localhost:8080/update',
-    axios.post( 'http://localhost:8080/signup',
+    // axios.post( 'http://localhost:8080/signup',
         signUpInfo
       )
       .then( axiosReturnData => {
@@ -75,6 +75,7 @@ class LogIn extends React.Component {
               <FormControl 
               type="password" 
               placeholder="Password"
+              inputRef={input => { this.passwordInput = input; }}
               required
               />
             </Col>

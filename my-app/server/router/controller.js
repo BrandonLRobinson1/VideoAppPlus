@@ -17,8 +17,6 @@ exports.createUser = async (req, res) => {
     password: hash
   } );
 
-
-
   let findTheUser = await User.findOne({ email });
   console.log(findTheUser, ' findTheUser')
   if (!findTheUser) {
@@ -28,40 +26,32 @@ exports.createUser = async (req, res) => {
     res.status(400).send('this user/email has already been created');
   }
 
-
 }
 
-exports.verifyUser = function(req, res){
-  console.log(req.body, ' req.body on verifyuser')
+exports.verifyUser = async (req, res) => {
   let email = req.body.email;
-  let password = req.body.pw;
+  let pw = req.body.pw;
 
-  //insert session or passport
-  console.log(email, password, ' email and pw');
+  let findTheUser = await User.findOne({email: email})
 
-  let findTheUser = User.findOne({email: email})
-    .then( (user) => {
-      throw new Error('whoops'); // <------------------------------------------------------ Tests the catch on line 69;
-      console.log('user found, verifying password...');
-      bcrypt.compare(password, user.password, function(err, response) {
-        //response is true if and only if passwords match
-        if (response) {
-          req.session.regenerate(function(err) {
-            // will have a new session here
-            console.log('password verified...session created');
-            //console.log(req.session, ' delete me')
-          })
-          res.status(201).send(user);
+  if (findTheUser) {
+    // throw new Error('whoops');
+    bcrypt.compare(pw, findTheUser.password)
+      .then( response => {
+        if ( response ) {
+          req.session.regenerate( (err) => {
+          console.log('password verified...session created');
+        })
+          res.status(201).send(response);
         } else {
-          console.log('username or password is incorrect');
-          res.status(400).send('username or password is incorrect');
+          console.log('password is incorrect');
+          res.status(400).send('password is incorrect');
         }
-    });
-    })
-    .catch( (err) => {
-       console.log('user not found - find the user login route')
-       if (err) handleError(err);
-    } );
+      } )
+  } else {
+    console.log('user not found');
+    res.status(400).send('user not found');
+  }
 
 };
 
@@ -131,6 +121,12 @@ exports.updateUser = function(req, res){
 
 };
 
-exports.error = function(req, res){
-  res.json({"404": "error"})
+// exports.error = function(req, res){
+//   res.json({"404": "error"})
+// }
+
+exports.error = (req, res, next) => {
+  const err = new Error('not found');
+  err.status = 404;
+  next(err);
 }
