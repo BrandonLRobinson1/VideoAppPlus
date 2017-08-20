@@ -17,23 +17,18 @@ exports.createUser = async (req, res) => {
     password: hash
   } );
 
-  let findTheUser = User.findOne({ email });
-  findTheUser
-    .then( (user) => {
-      // throw new Error('whoops'); // Tests the catch on line 37;
-      if (!user) {
-        newUser.save()
-          .then( (userNew) => {
-            res.status(201).send(userNew);
-          });
-      } else {
-        res.status(400).send('this user/email has already been created');
-      }
-    } )
-    .catch( (err) => {
-      console.log('there is an issue broooo')
-      throw Error(err);
-    });
+
+
+  let findTheUser = await User.findOne({ email });
+  console.log(findTheUser, ' findTheUser')
+  if (!findTheUser) {
+    await newUser.save();
+    res.status(201).send(newUser);
+  } else {
+    res.status(400).send('this user/email has already been created');
+  }
+
+
 }
 
 exports.verifyUser = function(req, res){
