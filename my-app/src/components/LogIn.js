@@ -30,15 +30,14 @@ class LogIn extends React.Component {
       email: this.emailInput.value,
       pw: 'pw'
     }
-
     // axios.post( 'http://localhost:8080/login',
     // axios.post( 'http://localhost:8080/update',
     axios.post( 'http://localhost:8080/signup',
         signUpInfo
       )
-      .then( data => {
+      .then( axiosReturnData => {
         // const stateDuplicate = this.state.loggedIn;
-        console.log(data.data.userInfo, ' stateData Success');
+        console.log(axiosReturnData.data, ' stateData Success');
 
         } )
       .catch( err => {

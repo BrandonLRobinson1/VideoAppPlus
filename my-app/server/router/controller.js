@@ -7,7 +7,7 @@ exports.catchErrors = (fn) => {
   };
 };
 
-exports.createUser = function(req, res){
+exports.createUser = async (req, res) => {
   let email = req.body.email;
   // let salt = bcrypt.genSaltSync(10);
   let hash = bcrypt.hashSync(req.body.pw, 10); // no need to use salt can jst replace it with ten
@@ -17,11 +17,11 @@ exports.createUser = function(req, res){
     password: hash
   } );
 
-  let findTheUser = User.findOne({email: email});
+  let findTheUser = User.findOne({ email });
   findTheUser
     .then( (user) => {
       // throw new Error('whoops'); // Tests the catch on line 37;
-      if(!user){
+      if (!user) {
         newUser.save()
           .then( (userNew) => {
             res.status(201).send(userNew);
@@ -32,7 +32,6 @@ exports.createUser = function(req, res){
     } )
     .catch( (err) => {
       console.log('there is an issue broooo')
-      console.log(err);
       throw Error(err);
     });
 }
@@ -41,7 +40,9 @@ exports.verifyUser = function(req, res){
   console.log(req.body, ' req.body on verifyuser')
   let email = req.body.email;
   let password = req.body.pw;
+
   //insert session or passport
+  console.log(email, password, ' email and pw');
 
   let findTheUser = User.findOne({email: email})
     .then( (user) => {
