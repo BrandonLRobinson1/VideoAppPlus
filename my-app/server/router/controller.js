@@ -23,6 +23,7 @@ exports.createUser = async (req, res) => {
     await newUser.save();
     res.status(201).send(newUser);
   } else {
+    console.log('user already created')
     res.status(400).send('this user/email has already been created');
   }
 
@@ -56,7 +57,7 @@ exports.verifyUser = async (req, res) => {
 };
 
 
-exports.updateUser = function(req, res){
+exports.updateUser = async (req, res) => {
 
   let userEmail = req.body.userEmail;
   let infoObj = req.body.stateData;

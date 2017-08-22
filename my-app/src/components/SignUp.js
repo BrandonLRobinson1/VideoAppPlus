@@ -1,47 +1,106 @@
 import React from 'react';
+import axios from 'axios';
+import {
+  Form,
+  FormGroup,
+  Col,
+  Button,
+  FormControl,
+  ControlLabel
+} from 'react-bootstrap';
 
-// import '../App.css';
+import '../App.css';
 
 class SignUp extends React.Component {
   constructor(){
     super();
 
-    this.SignUpFields = this.signUpFields.bind(this);
+    this.collectLogInValue = this.collectLogInValue.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
-  signUpFields(event) {
+  submitForm (event) {
     event.preventDefault();
 
-    console.log('SignUpField working')
-    //using refs on line 62 and 63 to capture inputs
-    const SignUp = {
-     email: this.inputEmail.value,
-     pw: this.inputPW.value
-    }
+    // //getting the value from the ref on line 47, would usually be just ref instead of inputRef
+    // console.log(this.emailInput.value);
 
-    this.props.location.userSignUp.userSignUp( SignUp );
-    //using ref on line 61 to reset input
-    this.SignUpForm.reset();
+    // console.log('form submit, call axios pass it ');
+    //  let signUpInfo = {
+    //   email: this.emailInput.value,
+    //   pw: this.passwordInput.value
+    // }
+    // // axios.post( 'http://localhost:8080/login',
+    // // axios.post( 'http://localhost:8080/update',
+    // axios.post( 'http://localhost:8080/signup',
+    //     signUpInfo
+    //   )
+    //   .then( axiosReturnData => {
+    //     // const stateDuplicate = this.state.loggedIn;
+    //     console.log(axiosReturnData.data, ' stateData Success');
+    //     } )
+    //   .catch( err => {
+    //     if (err) console.log( err );
+    //     alert('your job info sucks');
+    //   }); 
+
+  
+    console.log(this.props, ' path')
+    // this.props.location.pathname.push('/')
+  }
+
+  collectLogInValue (event) {
+    event.preventDefault();
+    console.log(event.target.value);
   }
 
   render() {
-    console.log('log signup')
+    // log in form with login password and sign up
+    const LogInForm = (
+        <Form horizontal onSubmit={this.submitForm}>
+
+          <h2 className="text-center">Sign Up Job Seeker</h2>
+          <br></br>
+          <FormGroup controlId="formHorizontalEmail">
+            <Col sm={12}>
+              <FormControl 
+              type="email" 
+              placeholder="Email"
+              onChange={this.collectLogInValue}
+              inputRef={input => { this.emailInput = input; }}
+              />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword">
+            <Col sm={12}>
+              <FormControl 
+              type="password" 
+              placeholder="Password"
+              inputRef={input => { this.passwordInput = input; }}
+              required
+              />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col sm={12}>
+              <Button className="expandWidth" bsStyle="info" type="submit">
+                Sign in
+              </Button>
+            </Col>
+          </FormGroup>
+
+        </Form >
+    );
+
     return (
-      <div className="App form">
-        Sign Up
-        <form className="formation" ref={ (input)=>{this.SignUpForm = input}} onSubmit={ (e)=>{this.signUpFields(e)} }>
-          <div className="input">
-            <input type='text' placeholder='email' className="inputEmail" ref={ (input) => { this.inputEmail = input } } required></input>
-          </div>
-          <div className="input">
-            <input type='password' placeholder='password' className="inputPasswird" ref={ (input) => { this.inputPW = input } } required></input>
-          </div>
-          <div className="input">
-            <input type='submit' value='Sign Up'></input>
-          </div>
-        </form>  
+      <div>
+        <FormGroup className="form-wrap">
+          {LogInForm}
+        </ FormGroup>
       </div>
-    )    
+    );
   }
 }
 
